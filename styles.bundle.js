@@ -10,7 +10,7 @@ module.exports = " /*\r\n * # Semantic UI - 2.3.1\r\n * https://github.com/Seman
 /***/ "./node_modules/raw-loader/index.js!./node_modules/postcss-loader/lib/index.js??embedded!./src/styles.css":
 /***/ (function(module, exports) {
 
-module.exports = ".coupon.segment {\r\n  min-height: 400px;\r\n  word-wrap: break-word;\r\n}\r\n\r\n.ui.vertical.footer.segment {\r\n  margin-top: 3rem;\r\n}\r\n"
+module.exports = ".coupon.segment {\r\n  min-height: 400px;\r\n  word-wrap: break-word;\r\n}\r\n\r\n.tab.segment {\r\n  min-height: 500px;\r\n}\r\n\r\n.ui.vertical.footer.segment {\r\n  margin-top: 3rem;\r\n}\r\n"
 
 /***/ }),
 
