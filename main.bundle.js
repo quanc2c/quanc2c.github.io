@@ -123,9 +123,12 @@ var AppComponent = /** @class */ (function () {
                 else if (url.startsWith("/help")) {
                     _this.menuIndex = 4;
                 }
-                else {
+                else if (url.startsWith("/home")) {
                     _this.menuIndex = 1;
                     document.title = "星云优惠券-电子券C2C交易平台";
+                }
+                else {
+                    _this.menuIndex = 0;
                 }
             }
         });
@@ -645,7 +648,7 @@ module.exports = ""
 /***/ "./src/app/coupon/coupon.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui vertical basic coupon loading segment\">\r\n  <div class=\"ui raised segment\" *ngIf=\"coupon\">\r\n    <div class=\"ui items\">\r\n      <div class=\"item\">\r\n        <div class=\"ui small image\">\r\n          <img src=\"{{coupon.img}}\">\r\n        </div>\r\n        <div class=\"content\">\r\n          <div class=\"header\">{{coupon.name}}</div>\r\n          <div class=\"meta\">\r\n            {{coupon.cat}}\r\n          </div>\r\n          <div class=\"description\">\r\n            {{coupon.desc}}\r\n          </div>\r\n          <div class=\"extra\">\r\n            <h4 class=\"ui red header\">\r\n              价格：{{coupon.price | weiToNas}}【NAS】\r\n            </h4>\r\n          </div>\r\n          <div class=\"extra\">\r\n            <div class=\"ui label\">\r\n              已售：{{coupon.soldNum}}\r\n            </div>\r\n            <div class=\"ui label\">\r\n              库存：{{coupon.num}}\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"ui positive message\" *ngIf=\"showProm\">\r\n      <div class=\"header\">\r\n        你还没有安装浏览器插件，安装后再试\r\n      </div>\r\n      <p></p>\r\n      <a class=\"ui red button\" href=\"https://github.com/ChengOrangeJu/WebExtensionWallet\" target=\"_blank\">安装</a>\r\n    </div>\r\n\r\n    <form class=\"ui form\" #f=\"ngForm\" novalidate (submit)=\"onBuyCoupon(f, $event, coupon)\">\r\n      <div class=\"field\">\r\n        <input type=\"number\" name=\"num\" placeholder=\"输入购买数量\" #num=\"ngModel\" ngModel required (focus)=\"maxError=false\">\r\n        <div class=\"ui pointing grey label\" *ngIf=\"num.errors\">\r\n          购买数量必填\r\n        </div>\r\n        <div class=\"ui pointing grey label\" *ngIf=\"maxError\">\r\n          购买数量不能超过库存\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"field\">\r\n        <input type=\"email\" name=\"email\" placeholder=\"输入接受优惠券的邮箱地址\" #email=\"ngModel\" ngModel required pattern=\"^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*\\.[a-zA-Z0-9]{2,6}$\">\r\n        <div class=\"ui pointing grey label\" *ngIf=\"email.errors\">\r\n          输入有效的电子邮箱格式\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"field\">\r\n        <input type=\"text\" name=\"note\" placeholder=\"备注\" ngModel required #note=\"ngModel\" maxlength=\"64\">\r\n        <div class=\"ui pointing grey label\" *ngIf=\"note.errors\">\r\n          输入1-64个字符\r\n        </div>\r\n      </div>\r\n\r\n      <button class=\"ui primary button\" type=\"submit\">购买优惠券</button>\r\n    </form>\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n"
+module.exports = "<div class=\"ui vertical basic coupon loading segment\">\r\n  <div class=\"ui raised segment\" *ngIf=\"coupon\">\r\n    <div class=\"ui items\">\r\n      <div class=\"item\">\r\n        <div class=\"ui small image\">\r\n          <img src=\"{{coupon.img}}\">\r\n        </div>\r\n        <div class=\"content\">\r\n          <div class=\"header\">{{coupon.name}}</div>\r\n          <div class=\"meta\">\r\n            {{coupon.cat}}\r\n          </div>\r\n          <div class=\"description\">\r\n            {{coupon.desc}}\r\n            <p>卖家：{{coupon.owner}}</p>\r\n          </div>\r\n          <div class=\"extra\">\r\n            <h4 class=\"ui red header\">\r\n              价格：{{coupon.price | weiToNas}}【NAS】\r\n            </h4>\r\n          </div>\r\n          <div class=\"extra\">\r\n            <div class=\"ui label\">\r\n              已售：{{coupon.soldNum}}\r\n            </div>\r\n            <div class=\"ui label\">\r\n              库存：{{coupon.num}}\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"ui positive message\" *ngIf=\"showProm\">\r\n      <div class=\"header\">\r\n        你还没有安装浏览器插件，安装后再试\r\n      </div>\r\n      <p></p>\r\n      <a class=\"ui red button\" href=\"https://github.com/ChengOrangeJu/WebExtensionWallet\" target=\"_blank\">安装</a>\r\n    </div>\r\n\r\n    <form class=\"ui form\" #f=\"ngForm\" novalidate (submit)=\"onBuyCoupon(f, $event, coupon)\">\r\n      <div class=\"field\">\r\n        <input type=\"number\" name=\"num\" placeholder=\"输入购买数量\" #num=\"ngModel\" ngModel required (focus)=\"maxError=false\">\r\n        <div class=\"ui pointing grey label\" *ngIf=\"num.errors\">\r\n          购买数量必填\r\n        </div>\r\n        <div class=\"ui pointing grey label\" *ngIf=\"maxError\">\r\n          购买数量不能超过库存\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"field\">\r\n        <input type=\"email\" name=\"email\" placeholder=\"输入接受优惠券的邮箱地址\" #email=\"ngModel\" ngModel required pattern=\"^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*\\.[a-zA-Z0-9]{2,6}$\">\r\n        <div class=\"ui pointing grey label\" *ngIf=\"email.errors\">\r\n          输入有效的电子邮箱格式\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"field\">\r\n        <input type=\"text\" name=\"note\" placeholder=\"备注\" ngModel required #note=\"ngModel\" maxlength=\"64\">\r\n        <div class=\"ui pointing grey label\" *ngIf=\"note.errors\">\r\n          输入1-64个字符\r\n        </div>\r\n      </div>\r\n\r\n      <button class=\"ui primary button\" type=\"submit\">购买优惠券</button>\r\n    </form>\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -716,7 +719,7 @@ var CouponComponent = /** @class */ (function () {
             }, function () {
                 _this.notify.show("优惠券购买成功");
                 target.removeClass("loading");
-                _this.router.navigate(["/mine"]);
+                _this.router.navigate(["/mine"], { queryParams: { tabIndex: 2 } });
             });
         }
     };
@@ -874,7 +877,7 @@ module.exports = ""
 /***/ "./src/app/mine/mine.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui top attached tabular menu\">\r\n  <a class=\"active item\" data-tab=\"1\">我出售的优惠券</a>\r\n  <a class=\"item\" data-tab=\"2\">我买到的优惠券</a>\r\n  <a class=\"item\" data-tab=\"3\">我卖出的优惠券</a>\r\n</div>\r\n<div class=\"ui bottom attached active tab segment\" data-tab=\"1\">\r\n  <table class=\"ui celled table\">\r\n    <thead>\r\n    <tr>\r\n      <th>优惠券名</th>\r\n      <th>已售</th>\r\n      <th>库存</th>\r\n      <th>过期时间</th>\r\n    </tr>\r\n    </thead>\r\n    <tbody>\r\n    <tr *ngFor=\"let c of allCoupon\">\r\n      <td><a routerLink=\"/coupon/{{c.id}}\">{{c.name}}</a></td>\r\n      <td>{{c.soldNum}}</td>\r\n      <td>{{c.num}}</td>\r\n      <td>{{c.expired}}</td>\r\n    </tr>\r\n    </tbody>\r\n  </table>\r\n</div>\r\n<div class=\"ui bottom attached tab segment\" data-tab=\"2\">\r\n  <table class=\"ui celled  table\">\r\n    <thead>\r\n    <tr>\r\n      <th>订单号</th>\r\n      <th>优惠券名</th>\r\n      <th>购买数量</th>\r\n      <th>卖家备注</th>\r\n      <th>状态</th>\r\n      <th>操作</th>\r\n    </tr>\r\n    </thead>\r\n    <tbody>\r\n    <tr *ngFor=\"let c of buyerAllOrders\">\r\n      <td>{{c.id}}</td>\r\n      <td><a routerLink=\"/coupon/{{c.quanItem.id}}\">{{c.quanItem.name}}</a></td>\r\n      <td>{{c.num}}</td>\r\n      <td>{{c.sellerNote}}</td>\r\n      <td>{{c.status | status}}</td>\r\n      <td>\r\n        <button class=\"ui small fluid blue button\" *ngIf=\"c.status=='0'\" (click)=\"buyerCancelOrder(c.id, $event)\">取消</button>\r\n        <button class=\"ui small fluid blue button\" *ngIf=\"c.status=='1'\" (click)=\"receiveOrder(c.id, $event)\">确认收货</button>\r\n      </td>\r\n    </tr>\r\n    </tbody>\r\n  </table>\r\n</div>\r\n<div class=\"ui bottom attached tab segment\" data-tab=\"3\">\r\n  <h4 class=\"ui right aligned header\" *ngIf=\"sellerCountInfo\">账户余额：{{sellerCountInfo.balance | weiToNas}}【NAS】\r\n    <div class=\"ui small primary button\" *ngIf=\"sellerCountInfo.balance != 0\" (click)=\"sellerWithDraw($event)\">提现</div>\r\n  </h4>\r\n  <table class=\"ui celled  table\">\r\n    <thead>\r\n    <tr>\r\n      <th>订单号</th>\r\n      <th>优惠券名</th>\r\n      <th>购买数量</th>\r\n      <th>买家邮箱</th>\r\n      <th>买家备注</th>\r\n      <th>状态</th>\r\n      <th>操作</th>\r\n    </tr>\r\n    </thead>\r\n    <tbody>\r\n    <tr *ngFor=\"let c of sellerAllOrders\">\r\n      <td>{{c.id}}</td>\r\n      <td><a routerLink=\"/coupon/{{c.quanItem.id}}\">{{c.quanItem.name}}</a></td>\r\n      <td>{{c.num}}</td>\r\n      <td><a href=\"mailto:{{c.email}}\">{{c.email}}</a></td>\r\n      <td>{{c.buyerNote}}</td>\r\n      <td>{{c.status | status}}</td>\r\n      <td>\r\n        <button class=\"ui small fluid blue button\" *ngIf=\"c.status=='0'\" (click)=\"shipOrder(c.id, c.email, $event)\">确认发货</button>\r\n      </td>\r\n    </tr>\r\n    </tbody>\r\n  </table>\r\n</div>\r\n\r\n\r\n\r\n"
+module.exports = "<div class=\"ui top attached tabular menu\">\r\n  <a class=\"active item\" data-tab=\"1\" [ngClass]=\"{'active': tabIndex==1}\">我出售的优惠券</a>\r\n  <a class=\"item\" data-tab=\"2\" [ngClass]=\"{'active': tabIndex==2}\">我买到的优惠券</a>\r\n  <a class=\"item\" data-tab=\"3\" [ngClass]=\"{'active': tabIndex==3}\">我卖出的优惠券</a>\r\n</div>\r\n<div class=\"ui bottom attached active tab segment\" data-tab=\"1\" [ngClass]=\"{'active': tabIndex==1}\">\r\n  <table class=\"ui celled table\">\r\n    <thead>\r\n    <tr>\r\n      <th>优惠券名</th>\r\n      <th>已售</th>\r\n      <th>库存</th>\r\n      <th>过期时间</th>\r\n    </tr>\r\n    </thead>\r\n    <tbody>\r\n    <tr *ngFor=\"let c of allCoupon\">\r\n      <td><a routerLink=\"/coupon/{{c.id}}\">{{c.name}}</a></td>\r\n      <td>{{c.soldNum}}</td>\r\n      <td>{{c.num}}</td>\r\n      <td>{{c.expired}}</td>\r\n    </tr>\r\n    </tbody>\r\n  </table>\r\n</div>\r\n<div class=\"ui bottom attached tab segment\" data-tab=\"2\" [ngClass]=\"{'active': tabIndex==2}\">\r\n  <div class=\"ui labels\" *ngIf=\"buyerCountInfo\">\r\n    <div class=\"ui label\">\r\n      已取消\r\n      <div class=\"detail\">{{buyerCountInfo.cancelNum}}</div>\r\n    </div>\r\n    <div class=\"ui label\">\r\n      待确认收货\r\n      <div class=\"detail\">{{buyerCountInfo.confirmNum}}</div>\r\n    </div>\r\n    <div class=\"ui label\">\r\n      已完成\r\n      <div class=\"detail\">{{buyerCountInfo.doneNum}}</div>\r\n    </div>\r\n    <div class=\"ui label\">\r\n      待卖家发货\r\n      <div class=\"detail\">{{buyerCountInfo.shipNum}}</div>\r\n    </div>\r\n  </div>\r\n  <table class=\"ui celled table\">\r\n    <thead>\r\n    <tr>\r\n      <th>订单号</th>\r\n      <th>优惠券名</th>\r\n      <th>购买数量</th>\r\n      <th>卖家备注</th>\r\n      <th>状态</th>\r\n      <th>操作</th>\r\n    </tr>\r\n    </thead>\r\n    <tbody>\r\n    <tr *ngFor=\"let c of buyerAllOrders\">\r\n      <td>{{c.id}}</td>\r\n      <td><a routerLink=\"/coupon/{{c.quanItem.id}}\">{{c.quanItem.name}}</a></td>\r\n      <td>{{c.num}}</td>\r\n      <td>{{c.sellerNote}}</td>\r\n      <td>{{c.status | status}}</td>\r\n      <td>\r\n        <button class=\"ui small fluid blue button\" *ngIf=\"c.status=='0'\" (click)=\"buyerCancelOrder(c.id, $event)\">取消</button>\r\n        <button class=\"ui small fluid blue button\" *ngIf=\"c.status=='1'\" (click)=\"receiveOrder(c.id, $event)\">确认收货</button>\r\n      </td>\r\n    </tr>\r\n    </tbody>\r\n  </table>\r\n</div>\r\n<div class=\"ui bottom attached tab segment\" data-tab=\"3\" [ngClass]=\"{'active': tabIndex==3}\">\r\n  <h4 class=\"ui right aligned header\" *ngIf=\"sellerCountInfo\">账户余额：{{sellerCountInfo.balance | weiToNas}}【NAS】\r\n    <div class=\"ui small primary button\" *ngIf=\"sellerCountInfo.balance != 0\" (click)=\"sellerWithDraw($event)\">提现</div>\r\n  </h4>\r\n  <div class=\"ui labels\" *ngIf=\"sellerCountInfo\">\r\n    <div class=\"ui label\">\r\n      买家取消\r\n      <div class=\"detail\">{{sellerCountInfo.cancelNum}}</div>\r\n    </div>\r\n    <div class=\"ui label\">\r\n      待买家确认收货\r\n      <div class=\"detail\">{{sellerCountInfo.confirmNum}}</div>\r\n    </div>\r\n    <div class=\"ui label\">\r\n      已完成\r\n      <div class=\"detail\">{{sellerCountInfo.doneNum}}</div>\r\n    </div>\r\n    <div class=\"ui label\">\r\n      待发货\r\n      <div class=\"detail\">{{sellerCountInfo.shipNum}}</div>\r\n    </div>\r\n  </div>\r\n\r\n  <table class=\"ui celled  table\">\r\n    <thead>\r\n    <tr>\r\n      <th>订单号</th>\r\n      <th>优惠券名</th>\r\n      <th>购买数量</th>\r\n      <th>买家邮箱</th>\r\n      <th>买家备注</th>\r\n      <th>状态</th>\r\n      <th>操作</th>\r\n    </tr>\r\n    </thead>\r\n    <tbody>\r\n    <tr *ngFor=\"let c of sellerAllOrders\">\r\n      <td>{{c.id}}</td>\r\n      <td><a routerLink=\"/coupon/{{c.quanItem.id}}\">{{c.quanItem.name}}</a></td>\r\n      <td>{{c.num}}</td>\r\n      <td><a href=\"mailto:{{c.email}}\">{{c.email}}</a></td>\r\n      <td>{{c.buyerNote}}</td>\r\n      <td>{{c.status | status}}</td>\r\n      <td>\r\n        <button class=\"ui small fluid blue button\" *ngIf=\"c.status=='0'\" (click)=\"shipOrder(c.id, c.email, $event)\">确认发货</button>\r\n      </td>\r\n    </tr>\r\n    </tbody>\r\n  </table>\r\n</div>\r\n\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -884,8 +887,9 @@ module.exports = "<div class=\"ui top attached tabular menu\">\r\n  <a class=\"a
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MineComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__coupon_service__ = __webpack_require__("./src/app/coupon.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__notification_notification_component__ = __webpack_require__("./src/app/notification/notification.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__coupon_service__ = __webpack_require__("./src/app/coupon.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__notification_notification_component__ = __webpack_require__("./src/app/notification/notification.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -898,14 +902,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var MineComponent = /** @class */ (function () {
-    function MineComponent(couponService, notify, ngZone) {
+    function MineComponent(couponService, notify, ngZone, aRoute) {
         this.couponService = couponService;
         this.notify = notify;
         this.ngZone = ngZone;
+        this.aRoute = aRoute;
         this.allCoupon = [];
         this.buyerAllOrders = [];
         this.sellerAllOrders = [];
+        this.tabIndex = 1;
     }
     MineComponent.prototype.ngOnInit = function () {
         this.sellerGetAllQuans();
@@ -913,7 +920,11 @@ var MineComponent = /** @class */ (function () {
         this.sellerGetAllOrders();
     };
     MineComponent.prototype.ngAfterViewInit = function () {
+        var queryParams = this.aRoute.snapshot.queryParams;
         $('.tabular.menu .item').tab();
+        if (queryParams['tabIndex']) {
+            this.tabIndex = queryParams['tabIndex'];
+        }
     };
     MineComponent.prototype.sellerGetAllQuans = function () {
         var _this = this;
@@ -936,6 +947,7 @@ var MineComponent = /** @class */ (function () {
                     var r = JSON.parse(result);
                     _this.buyerAllOrders = r.orders.reverse();
                     _this.buyerCountInfo = r.countInfo;
+                    console.log("买家统计信息", r.countInfo);
                     console.log("买家所有订单", _this.buyerAllOrders);
                 });
             });
@@ -957,6 +969,7 @@ var MineComponent = /** @class */ (function () {
                     else {
                         $("#shipNum").text(r.countInfo.shipNum);
                     }
+                    console.log("卖家统计信息", r.countInfo);
                     console.log("卖家所有订单", _this.sellerAllOrders);
                 });
             });
@@ -1020,14 +1033,15 @@ var MineComponent = /** @class */ (function () {
     };
     MineComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            providers: [__WEBPACK_IMPORTED_MODULE_2__notification_notification_component__["a" /* NotificationComponent */]],
+            providers: [__WEBPACK_IMPORTED_MODULE_3__notification_notification_component__["a" /* NotificationComponent */]],
             selector: 'app-mine',
             template: __webpack_require__("./src/app/mine/mine.component.html"),
             styles: [__webpack_require__("./src/app/mine/mine.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__coupon_service__["a" /* CouponService */],
-            __WEBPACK_IMPORTED_MODULE_2__notification_notification_component__["a" /* NotificationComponent */],
-            __WEBPACK_IMPORTED_MODULE_0__angular_core__["N" /* NgZone */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__coupon_service__["a" /* CouponService */],
+            __WEBPACK_IMPORTED_MODULE_3__notification_notification_component__["a" /* NotificationComponent */],
+            __WEBPACK_IMPORTED_MODULE_0__angular_core__["N" /* NgZone */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]])
     ], MineComponent);
     return MineComponent;
 }());
@@ -1113,8 +1127,9 @@ module.exports = "<div class=\"ui vertical basic segment\">\r\n  <div class=\"ui
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PostComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__coupon_service__ = __webpack_require__("./src/app/coupon.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__notification_notification_component__ = __webpack_require__("./src/app/notification/notification.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__coupon_service__ = __webpack_require__("./src/app/coupon.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__notification_notification_component__ = __webpack_require__("./src/app/notification/notification.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1127,10 +1142,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var PostComponent = /** @class */ (function () {
-    function PostComponent(couponService, notify) {
+    function PostComponent(couponService, notify, router) {
         this.couponService = couponService;
         this.notify = notify;
+        this.router = router;
         this.extProm = false;
         this.categories = ["电子券", "满减券", "打车券", "骑行券", "外卖券", "电影券", "流量话费券", "其他"];
         this.selectedCategory = "电子券";
@@ -1158,19 +1175,20 @@ var PostComponent = /** @class */ (function () {
             }, function () {
                 _this.notify.show("优惠券录入成功");
                 $(target).removeClass("loading");
-                postForm.reset();
+                _this.router.navigate(["/mine"]);
             });
         }
     };
     PostComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            providers: [__WEBPACK_IMPORTED_MODULE_2__notification_notification_component__["a" /* NotificationComponent */]],
+            providers: [__WEBPACK_IMPORTED_MODULE_3__notification_notification_component__["a" /* NotificationComponent */]],
             selector: 'app-post',
             template: __webpack_require__("./src/app/post/post.component.html"),
             styles: [__webpack_require__("./src/app/post/post.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__coupon_service__["a" /* CouponService */],
-            __WEBPACK_IMPORTED_MODULE_2__notification_notification_component__["a" /* NotificationComponent */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__coupon_service__["a" /* CouponService */],
+            __WEBPACK_IMPORTED_MODULE_3__notification_notification_component__["a" /* NotificationComponent */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */]])
     ], PostComponent);
     return PostComponent;
 }());
