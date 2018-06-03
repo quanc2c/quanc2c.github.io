@@ -127,6 +127,10 @@ var AppComponent = /** @class */ (function () {
                     _this.menuIndex = 1;
                     document.title = "星云优惠券-电子券C2C交易平台";
                 }
+                else if (url.startsWith("/")) {
+                    _this.menuIndex = 1;
+                    document.title = "星云优惠券-电子券C2C交易平台";
+                }
                 else {
                     _this.menuIndex = 0;
                 }
